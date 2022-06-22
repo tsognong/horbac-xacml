@@ -50,7 +50,7 @@ public class PDPEngineService {
 			// Add subject ID attribute (access-subject category), no issuer, string value
 			// "john"
 			final AttributeFqn subjectIdAttributeId = AttributeFqns
-					.newInstance(XacmlAttributeCategory.XACML_1_0_ACCESS_SUBJECT.value(), Optional.empty(), "name");
+					.newInstance(XacmlAttributeCategory.XACML_1_0_ACCESS_SUBJECT.value(), Optional.empty(), XacmlAttributeId.XACML_1_0_SUBJECT_ID.value());
 			final AttributeBag<?> subjectIdAttributeValues = Bags.singletonAttributeBag(StandardDatatypes.STRING,
 					new StringValue(req.getSubjectId()));
 			requestBuilder.putNamedAttributeIfAbsent(subjectIdAttributeId, subjectIdAttributeValues);

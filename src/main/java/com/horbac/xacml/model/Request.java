@@ -37,4 +37,8 @@ public class Request {
 
 	public Request() {
 	}
+
+	public String toString() {
+	 return "[ user:" +subjectId + " resource: "+resourceId +" action: "+actionId + "]";
+	}
 }

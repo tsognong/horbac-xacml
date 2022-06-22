@@ -1,5 +1,6 @@
 package com.horbac.xacml.pep;
 
+import org.ow2.authzforce.core.pdp.api.DecisionRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -15,10 +16,10 @@ public class PEPController {
 	@Autowired
 	protected PDPEngineService pdpService;
 	
-	@GetMapping("/")
+	@GetMapping("/pdp")
 	public DecisionType checkRequest(@RequestParam String subjectId, @RequestParam String resourceId,
 			@RequestParam  String actionId) {		
-		Request req = new Request(subjectId, resourceId, actionId);
+		Request req = new Request(subjectId, resourceId, actionId);		
 		return pdpService.evaluate(req);
 	}
 
