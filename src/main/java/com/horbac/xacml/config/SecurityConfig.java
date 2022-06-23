@@ -30,7 +30,7 @@ public class SecurityConfig {
 	@Bean
 	UserDetailsService users() {
 		UserDetails user1 = User.builder().username("myuser").password("mypass").roles("myrole").build();
-		UserDetails user2 = User.builder().username("myuser2").password("{noop}mypass2").roles("myrole2").build();
+		UserDetails user2 = User.builder().username("admin").password("{noop}admin").roles("myrole2").build();
 		return new InMemoryUserDetailsManager(user1, user2);
 	}
 

@@ -1,0 +1,15 @@
+roles:
+  Trainee:
+    permissions:
+      - read-partner-docs
+      - see-experimental-pages
+  Employee:
+    roles:
+      - Trainee
+    permissions:
+      - read:internal-docs
+  Admin:
+    roles:
+      - Employee
+    permissions:
+      - read-secrets

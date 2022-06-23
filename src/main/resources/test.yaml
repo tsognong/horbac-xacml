@@ -1,0 +1,10 @@
+apiVersion: xl-deploy/v1
+kind: Roles
+spec:
+- name: leaders
+  principals:
+  - jay_albert
+- name: developers
+  principals:
+  - ron_vallee
+  - sue_perez

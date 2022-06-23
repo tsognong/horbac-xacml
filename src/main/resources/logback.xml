@@ -8,7 +8,7 @@
 <!-- -->
 <!-- More information: http://logback.qos.ch/faq.html#sharedConfiguration -->
 <configuration>
-	<appender name="stdout" class="ch.qos.logback.core.ConsoleAppender">
+	<appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
 		<encoder>
 			<pattern>%-4r [%t] [%d] %5p [%C:%M] \(%F:%L\) - %m%n</pattern>
          <!-- Pattern mitigating CRLF injection -->
@@ -17,7 +17,7 @@
 	</appender>
 
 	<logger name="org.ow2.authzforce" additivity="false" level="ERROR">
-		<appender-ref ref="stdout" />
+		<appender-ref ref="CONSOLE" />
 	</logger>
 <!-- HTTP/JAX-RS/SOAP request/response debugging -->
    <!-- For logging request/response to/from webapp, only logger "org.apache.cxf" 
@@ -26,11 +26,11 @@
       Tomcat, the server's logback.xml overrides this, so you need to modify the 
       server's logback.xml to get the proper CXF client logging. -->
    <logger name="org.apache.cxf" additivity="false" level="WARN"> <appender-ref 
-      ref="stdout" /> </logger> 
+      ref="CONSOLE" /> </logger> 
    <!-- <logger name="org.apache.http" additivity="false" level="DEBUG"> <appender-ref 
       ref="error" /> </logger> <logger name="org.apache.http.wire" level="ERROR"> 
       <appender-ref ref="error" /> </logger> -->
 	<root level="ERROR">
-		<appender-ref ref="stdout" />
+		<appender-ref ref="CONSOLE" />
 	</root>
 </configuration>

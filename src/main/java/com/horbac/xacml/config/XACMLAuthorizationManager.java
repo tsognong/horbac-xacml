@@ -22,26 +22,24 @@ public class XACMLAuthorizationManager implements AuthorizationManager<RequestAu
 
 	@Autowired
 	protected PDPEngineService pdpService;
-	
+
 	@Override
 	public AuthorizationDecision check(Supplier<Authentication> authentication, RequestAuthorizationContext object) {
 		// TODO Auto-generated method stub
 		final org.slf4j.Logger LOGGER = LoggerFactory.getLogger(XACMLAuthorizationManager.class);
-		
-			//final DecisionRequest request = createRequest(authentication, object);
-			final Request req = new Request(authentication.get().getName(), object.getRequest().getRequestURI(), object.getRequest().getMethod());
-			LOGGER.debug("XACML authorization result: {}, {}", authentication, object);
-			System.out.println("Requête.........: " + "AUTH...." + authentication.get().getPrincipal().toString()+ 
-					"  => method:"+object.getRequest().getMethod()+" URI: "+object.getRequest().getRequestURI()+
-					" METHOD:"+object.getRequest().getMethod()
-					+" PARAMS: "+object.getRequest().getParameter("subjectId")+" URL: "
-					+object.getRequest().getRequestURL().toString()
-					);
-			DecisionType res = pdpService.evaluate(req);
-			
-			LOGGER.debug("XACML authorization request: {}, result {}", req, new  AuthorizationDecision(res == DecisionType.PERMIT).toString());
-			return new  AuthorizationDecision(res == DecisionType.PERMIT);
-		
+		if (object.getRequest().getRequestURI().matches("/favicon.ico")
+				|| object.getRequest().getRequestURI().matches("/cp/error")) {
+			return new AuthorizationDecision(true);
+		}
+		// final DecisionRequest request = createRequest(authentication, object);
+		final Request req = new Request(authentication.get().getName(), object.getRequest().getRequestURI(),
+				object.getRequest().getMethod());
+		LOGGER.error("XACML authorization result: {}, {}", authentication.get().getPrincipal().toString(), object.getRequest().getMethod(), object.getRequest().getRequestURI(), object.getRequest().getParameter("subjectId"));
+		DecisionType res = pdpService.evaluate(req);
+		LOGGER.error("XACML Decision request: {}, {}", req, res);
+		LOGGER.error("XACML authorization request: {}, {}", req, new AuthorizationDecision(res == DecisionType.PERMIT).toString());
+		return new AuthorizationDecision(res == DecisionType.PERMIT);
+
 	}
 
 }

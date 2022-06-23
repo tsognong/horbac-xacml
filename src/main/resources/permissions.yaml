@@ -1,0 +1,22 @@
+apiVersion: xl-deploy/v1
+kind: Permissions
+spec:
+- global:
+  - role: Leaders
+    permissions:
+    - report#view
+    - task#assign
+  - role: Developers
+    permissions:
+    - task#skip_step
+    - admin
+    - login
+    - task#takeover
+    - task#preview_step
+    - report#view
+    - discovery
+    - controltask#execute
+    - task#assign
+    - task#view
+    - task#move_step
+    - security#edit

@@ -1,0 +1,16 @@
+version: '1.0'
+name: HSV
+units:
+- name: Director
+  permissions:
+  - /report#get
+  - /employees#get
+  subunits:
+  - name: RH
+    permissions:
+    - /employees#post#put#delete
+    subunits: null
+  - name: Admin
+    permissions:
+    - /users#get
+    subunits: null
