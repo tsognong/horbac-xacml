@@ -1,16 +1,17 @@
-version: '0.0'
+---
+version: "0.0"
 name: null
 units:
-- name: Root
+- name: "Root"
   permissions:
-  - api: /pdp
-    methods:
-    - POST
-  - api: /error
+  - api: "/error"
     methods: null
-  - api: /error
-    methods: null
-  - api: /pdp
+  - api: ""
     methods:
-    - GET
+    - "GET"
+  - api: "/error"
+    methods: null
+  - api: "/pdp"
+    methods:
+    - "POST"
   subunits: null

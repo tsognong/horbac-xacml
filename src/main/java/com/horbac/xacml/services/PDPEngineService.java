@@ -1,6 +1,7 @@
 package com.horbac.xacml.services;
 
 import java.io.IOException;
+import java.util.List;
 import java.util.Optional;
 
 import org.ow2.authzforce.core.pdp.api.AttributeFqn;
@@ -8,6 +9,7 @@ import org.ow2.authzforce.core.pdp.api.AttributeFqns;
 import org.ow2.authzforce.core.pdp.api.DecisionRequest;
 import org.ow2.authzforce.core.pdp.api.DecisionRequestBuilder;
 import org.ow2.authzforce.core.pdp.api.DecisionResult;
+import org.ow2.authzforce.core.pdp.api.PepAction;
 import org.ow2.authzforce.core.pdp.api.value.AnyUriValue;
 import org.ow2.authzforce.core.pdp.api.value.AttributeBag;
 import org.ow2.authzforce.core.pdp.api.value.Bags;
@@ -74,8 +76,16 @@ public class PDPEngineService {
 
 			// No more attribute, let's finalize the request creation
 			final DecisionRequest request = requestBuilder.build(false);
+			
 			// Evaluate the request
 			final DecisionResult result = pdp.evaluate(request);
+			
+			List<PepAction> obs = result.getPepActions();
+			System.out.println("ID "+ 45);
+			for (PepAction pepAction : obs) {
+				System.out.println("ACTION "+ pepAction.getAttributeAssignments());
+				System.out.println("ID "+ pepAction.getId());
+			}
 			if (result.getDecision() == DecisionType.PERMIT) {
 				return result.getDecision();
 			} else {
